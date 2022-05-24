@@ -36,11 +36,11 @@
 			result = xmlhttp.responseText;
 		  }
 		  var lines = result.split(/\r?\n/);
-		  var data = lines[0].split(",");
+		  var data = lines[0].split("|");
 		
 		  document.getElementById("name").innerHTML = data[0];
 	      document.getElementById("title_company").innerHTML = data[2];
-	      document.getElementById("phone").innerHTML = "New text!";
+	      document.getElementById("phone").innerHTML = data[4];
 	      document.getElementById("email").innerHTML = data[1];
 	    // linkedin1 data-vanity="dalia-ibrahim-258b5430"
 	    // linkedin2 href="https://www.linkedin.com/in/dalia-ibrahim-258b5430?trk=profile-badge"
