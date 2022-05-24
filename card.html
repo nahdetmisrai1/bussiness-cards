@@ -35,7 +35,13 @@
 			result = xmlhttp.responseText;
 		  }
 		  var lines = result.split(/\r?\n/);
-		  employee_number = 2 // Starts with 1. Set according to employee data row number in data/Bussiness Cards.csv
+		  
+		  // employee_number Starts with 1. Set according to employee data row number in data/Bussiness Cards.csv. Recieved as a parameter
+		  // employee_number = 2
+		  var url = new URL(window.location.href);
+		  var employee_number = url.searchParams.get("employee_number");
+		  console.log(employee_number);
+		  
 		  var data = lines[employee_number-1].split("|");
 		
 		  document.getElementById("photo").setAttribute("src", "photos/" + employee_number + ".jpg");
