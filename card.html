@@ -30,28 +30,18 @@
     <script type="text/javascript">
 	function readCSV() {
 		var xmlhttp = new XMLHttpRequest();
-		  xmlhttp.open("GET", "data/Business Cards.csv", false); // `false` makes the request synchronous
+		  xmlhttp.open("GET", "https://raw.githubusercontent.com/nahdetmisrai1/bussiness-cards/main/data/Business%20Cards.csv", false); // `false` makes the request synchronous
 		  xmlhttp.send();
 		  if (xmlhttp.status==200) {
 			result = xmlhttp.responseText;
 		  }
-		  console.log(result);
-				
-	
-
-
-        
-
-		//console.log(FileText);
-
-
-
+		  var lines = result.split(/\r?\n/);
+		  var data = lines[0].split(",");
 		
-		// data/Business Cards.csv
-		//document.getElementById("name").innerHTML = lines[0];
-	    //document.getElementById("title_company").innerHTML = "New text!";
-	    //document.getElementById("phone").innerHTML = "New text!";
-	    //document.getElementById("email").innerHTML = "New text!";
+		  document.getElementById("name").innerHTML = data[0];
+	      document.getElementById("title_company").innerHTML = data[2];
+	      document.getElementById("phone").innerHTML = "New text!";
+	      document.getElementById("email").innerHTML = data[1];
 	    // linkedin1 data-vanity="dalia-ibrahim-258b5430"
 	    // linkedin2 href="https://www.linkedin.com/in/dalia-ibrahim-258b5430?trk=profile-badge"
 	    // card_number_barcode: src="https://api.qrserver.com/v1/create-qr-code/?data=https://rawcdn.githack.com/nahdetmisrai1/bussiness-cards/main/vcards/1-vcard.vcf&amp;size=100x100" 
