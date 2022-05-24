@@ -28,6 +28,7 @@
 
 	<!--====== CSV Parcing Scripts ======-->
     <script type="text/javascript">
+	var employee_id = 0
 	function readCSV() {
 		var xmlhttp = new XMLHttpRequest();
 		  xmlhttp.open("GET", "https://raw.githubusercontent.com/nahdetmisrai1/bussiness-cards/main/data/Business%20Cards.csv", false); // `false` makes the request synchronous
@@ -36,15 +37,18 @@
 			result = xmlhttp.responseText;
 		  }
 		  var lines = result.split(/\r?\n/);
-		  var data = lines[0].split("|");
+		  employee_number = 2
+		  var data = lines[employee_number-1].split("|");
 		
+		  document.getElementById("photo").setAttribute("src", "photos/" + employee_number + ".jpg");
 		  document.getElementById("name").innerHTML = data[0];
 	      document.getElementById("title_company").innerHTML = data[2];
-	      document.getElementById("phone").innerHTML = data[4];
+	      document.getElementById("phone").innerHTML = data[3];
 	      document.getElementById("email").innerHTML = data[1];
-	    // linkedin1 data-vanity="dalia-ibrahim-258b5430"
-	    // linkedin2 href="https://www.linkedin.com/in/dalia-ibrahim-258b5430?trk=profile-badge"
-	    // card_number_barcode: src="https://api.qrserver.com/v1/create-qr-code/?data=https://rawcdn.githack.com/nahdetmisrai1/bussiness-cards/main/vcards/1-vcard.vcf&amp;size=100x100" 
+		  document.getElementById("linkedin1").setAttribute("data-vanity", data[4]);
+		  
+		  document.getElementById("vcard_number").setAttribute("href", "vcards/" + employee_number + "-vcard.vcf");
+		  document.getElementById("card_number_barcode").setAttribute("src", "https://api.qrserver.com/v1/create-qr-code/?data=https://rawcdn.githack.com/nahdetmisrai1/bussiness-cards/main/vcards/" + employee_number + "-vcard.vcf&amp;size=100x100");
 	}
     </script>
   </head>
@@ -60,8 +64,8 @@
 		<div class="card card-dark bg-secondary-gradient">
 			<div class="card-body bubble-shadow">
 				<div class="d-flex justify-content-between">
-					<img src="photos/1.jpg" height="82.5" alt="Personal Photo">
-					<a class="button text-success" href="vcards/1-vcard.vcf"><b>Add Contact</b></a> 
+					<img id="photo" src="photos/1.jpg" height="150" alt="Personal Photo">
+					<a id="vcard_number" class="button text-success" href="vcards/1-vcard.vcf"><b>Add Contact</b></a> 
 				</div>
 				<h4 id="name" class="fw-bold mb-1 mt-2">Dalia M. Ibrahim, MPA, EMBA</h4>
 				
@@ -83,7 +87,6 @@
 				</div>
 				
 				<div id="linkedin1" class="badge-base LI-profile-badge" data-locale="en_US" data-size="medium" data-theme="light" data-type="VERTICAL" data-vanity="dalia-ibrahim-258b5430" data-version="v1">
-					<a id="linkedin2" class="badge-base__link LI-simple-link" href="https://www.linkedin.com/in/dalia-ibrahim-258b5430?trk=profile-badge"></a>
 				</div>
 
 			</div>
