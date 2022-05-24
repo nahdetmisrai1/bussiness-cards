@@ -23,10 +23,8 @@
 	<link rel="stylesheet" href="assets/css/bootstrap.min.css" />
     <link rel="stylesheet" href="assets/css/style.css" />
 
-	<!--====== LinkedIn Bagde Script ======-->
-	<script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
-
 	<!--====== CSV Parcing Scripts ======-->
+	<script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
     <script type="text/javascript">
 	var employee_id = 0
 	function readCSV() {
@@ -37,7 +35,7 @@
 			result = xmlhttp.responseText;
 		  }
 		  var lines = result.split(/\r?\n/);
-		  employee_number = 2
+		  employee_number = 2 // Starts with 1. Set according to employee data row number in data/Bussiness Cards.csv
 		  var data = lines[employee_number-1].split("|");
 		
 		  document.getElementById("photo").setAttribute("src", "photos/" + employee_number + ".jpg");
@@ -45,7 +43,21 @@
 	      document.getElementById("title_company").innerHTML = data[2];
 	      document.getElementById("phone").innerHTML = data[3];
 	      document.getElementById("email").innerHTML = data[1];
-		  document.getElementById("linkedin1").setAttribute("data-vanity", data[4]);
+		  
+		  <!--====== Adding LinkedIn Badge ======-->
+		  var div = document.createElement("div");
+		  div.className = "badge-base LI-profile-badge";
+		  div.setAttribute("data-locale", "en_US");
+		  div.setAttribute("data-size", "medium");
+		  div.setAttribute("data-theme", "light");
+		  div.setAttribute("data-type", "VERTICAL");
+		  div.setAttribute("data-vanity", data[4]);
+		  div.setAttribute("data-version", "v1");
+		  document.getElementById("card").appendChild(div);
+		  
+		  // For debugging
+		  //const welcomeTextNode = document.createTextNode("AAAAAAAAAAA");
+		  //document.getElementById("card").appendChild(welcomeTextNode);
 		  
 		  document.getElementById("vcard_number").setAttribute("href", "vcards/" + employee_number + "-vcard.vcf");
 		  document.getElementById("card_number_barcode").setAttribute("src", "https://api.qrserver.com/v1/create-qr-code/?data=https://rawcdn.githack.com/nahdetmisrai1/bussiness-cards/main/vcards/" + employee_number + "-vcard.vcf&amp;size=100x100");
@@ -59,10 +71,10 @@
 			<img src="assets/images/logo/logo.svg">
 		</div>
 	</div>
-
+	
 	<div class="col-md-4">
 		<div class="card card-dark bg-secondary-gradient">
-			<div class="card-body bubble-shadow">
+			<div id="card" class="card-body bubble-shadow">
 				<div class="d-flex justify-content-between">
 					<img id="photo" src="photos/0.jpg" width="200" alt="Personal Photo">
 					<a id="vcard_number" class="button text-success" href="vcards/1-vcard.vcf">
@@ -95,10 +107,6 @@
 						<div class="small"><b>Address:</b> 21 Ahmed Oraby Street, El Nahda Tower Mohandessine, Giza, Egypt</div>
 					</div>
 				</div>
-				
-				<div id="linkedin1" class="badge-base LI-profile-badge" data-locale="en_US" data-size="medium" data-theme="light" data-type="VERTICAL" data-vanity="likedinLinkTailEmpty" data-version="v1">
-				</div>
-
 			</div>
 		</div>
 	</div>
